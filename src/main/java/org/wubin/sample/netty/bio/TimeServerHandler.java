@@ -1,4 +1,4 @@
-package org.wubin.sample.netty;
+package org.wubin.sample.netty.bio;
 
 import java.io.BufferedReader;
 import java.io.IOException;

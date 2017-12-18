@@ -1,43 +1,47 @@
-package org.wubin.sample.netty;
+package org.wubin.sample.netty.biopool;
+
+import org.wubin.sample.netty.bio.TimeServerHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
+ * 伪异步
  * @author wubin
- * @date 2017/12/01
+ * @date 2017/12/11
  **/
 public class TimeServer {
 
-    /**
-     * Tomcat server - 解析协议
-     **/
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException  {
 
         int port = 8080;
-
         if(args != null && args.length > 0) {
-
             try {
                 port = Integer.valueOf(args[0]);
             } catch (NumberFormatException e) {
-
+                //
             }
         }
 
         ServerSocket server = null;
-
         try {
+
             server = new ServerSocket(port);
             System.out.println("The time server is start in port : " + port);
             Socket socket = null;
+
+            TimeServerHandlerExecutePool singleExector = new TimeServerHandlerExecutePool(50, 10000);// 创建I/O任务线程池
+
             while(true) {
-                socket = server.accept();//阻塞
-                new Thread(new TimeServerHandler(socket)).start();
+
+                socket = server.accept();
+                singleExector.execute(new TimeServerHandler(socket));
             }
         } finally {
+
             if(server != null) {
+
                 System.out.println("The time server close");
                 server.close();
                 server = null;
