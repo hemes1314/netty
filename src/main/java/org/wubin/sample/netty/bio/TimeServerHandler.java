@@ -32,10 +32,10 @@ public class TimeServerHandler implements Runnable {
             String currentTime = null;
             String body = null;
 
-            while (true) {
+            // 阻塞读取客户端发送内容
+            while ((body = in.readLine()) != null) {
 
                 body = in.readLine();
-                if(body == null) continue;
                 System.out.println("THe time server receive order : " + body);
                 currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body) ?
                         new java.util.Date(System.currentTimeMillis()).toString() : "BAD ORDER";

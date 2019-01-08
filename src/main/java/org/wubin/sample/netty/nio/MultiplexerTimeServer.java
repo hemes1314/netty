@@ -10,7 +10,6 @@ import java.nio.channels.SocketChannel;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
 
 /**
  * @author wubin
@@ -36,7 +35,7 @@ public class MultiplexerTimeServer implements Runnable {
             servChannel.configureBlocking(false);// 设置非阻塞模式
             selector = Selector.open(); // 创建多路复用器
             servChannel.register(selector, SelectionKey.OP_ACCEPT);// 将ServerSocketChannel注册到Reactor线程的多路复用器selector上，监听ACCEPT事件
-            System.out.println("The time server is start inport : " + port);
+            System.out.println("The time server is start in port : " + port);
         } catch (IOException e) {
             e.printStackTrace();
         }
