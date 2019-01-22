@@ -33,7 +33,7 @@ public class TimeServer {
             System.out.println("The time server is start in port : " + port);
             Socket socket = null;
             while(true) {
-                socket = server.accept();//阻塞
+                socket = server.accept();//阻塞点
                 new Thread(new TimeServerHandler(socket)).start();//一线程一连接
             }
         } finally {

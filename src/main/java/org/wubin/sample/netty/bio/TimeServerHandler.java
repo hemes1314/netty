@@ -33,6 +33,7 @@ public class TimeServerHandler implements Runnable {
             String body = null;
 
             // 阻塞读取客户端发送内容
+            // in.readLine() 阻塞点
             while ((body = in.readLine()) != null) {
 
                 body = in.readLine();

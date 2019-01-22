@@ -31,6 +31,7 @@ public class TimeServer {
             System.out.println("The time server is start in port : " + port);
             Socket socket = null;
 
+            // 一个客户端一个线程，消耗资源大，老tomcat socket，短连接，无法做长连接
             TimeServerHandlerExecutePool singleExector = new TimeServerHandlerExecutePool(50, 10000);// 创建I/O任务线程池
 
             while(true) {
