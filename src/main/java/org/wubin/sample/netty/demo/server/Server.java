@@ -1,4 +1,4 @@
-package org.wubin.sample.netty.demo1.server;
+package org.wubin.sample.netty.demo.server;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;

@@ -1,4 +1,4 @@
-package org.wubin.sample.netty.demo1.server;
+package org.wubin.sample.netty.demo.client;
 
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ChannelStateEvent;
@@ -6,7 +6,7 @@ import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
 
-public class HelloHandler extends SimpleChannelHandler {
+public class HiHandler extends SimpleChannelHandler {
 
 	/**
 	 * 接收消息
@@ -23,7 +23,7 @@ public class HelloHandler extends SimpleChannelHandler {
 		// 回写数据
 //	 	ChannelBuffer copiedBuffer = ChannelBuffers.copiedBuffer("hi".getBytes());
 //		ctx.getChannel().write(copiedBuffer);
-		ctx.getChannel().write("hi");
+//		ctx.getChannel().write("hi");
 		
 		super.messageReceived(ctx, e);
 	}
@@ -59,7 +59,6 @@ public class HelloHandler extends SimpleChannelHandler {
 
 	/**
 	 * channel关闭时的时候触发
-	 * 服务端未开启时会走closed
 	 */
 	@Override
 	public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {

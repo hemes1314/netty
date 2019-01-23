@@ -1,4 +1,4 @@
-package org.wubin.sample.netty.demo1.client;
+package org.wubin.sample.netty.demo.client;
 
 import java.net.InetSocketAddress;
 import java.util.Scanner;
