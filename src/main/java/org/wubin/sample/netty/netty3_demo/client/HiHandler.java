@@ -1,4 +1,4 @@
-package org.wubin.sample.netty.demo.client;
+package org.wubin.sample.netty.netty3_demo.client;
 
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ChannelStateEvent;
