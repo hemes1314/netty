@@ -27,7 +27,7 @@ public class ServerBootstrap {
 			// 将该通道对应的ServerSocket绑定到port端口
 			serverChannel.socket().bind(localAddress);
 			
-			// 获取一个boss线程
+			// 获取一个boss线程,监听大门
 			Boss boss = selectorRunnablePool.nextBoss();
 			boss.registerAcceptChannelTask(serverChannel);
 		} catch (Exception e) {

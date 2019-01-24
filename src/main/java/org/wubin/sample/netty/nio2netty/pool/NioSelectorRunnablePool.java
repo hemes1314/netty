@@ -16,9 +16,12 @@ public class NioSelectorRunnablePool {
 	private Worker [] workeres;
 	
 	public NioSelectorRunnablePool(Executor boss, Executor worker) {
+		System.out.println(Thread.currentThread().getName()+":init boss/worker thread， boss：1，workers："+Runtime.getRuntime().availableProcessors() * 2);
+		
 		initBoss(boss, 1);
 		// 核心线程数量*2
-		initWorker(worker, Runtime.getRuntime().availableProcessors() * 2);
+		//initWorker(worker, Runtime.getRuntime().availableProcessors() * 2);
+		initWorker(worker, 2);
 	}
 	
 	/**

@@ -8,6 +8,7 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
+import java.util.concurrent.Executors;
 
 /**
  * channel 大门，{port}
@@ -48,8 +49,9 @@ public class NIOServer {
 		// 轮训访问selector
 		while(true) {
 			// 当注册的事件到达时，方法返回，否则，该方法会一直阻塞
-			selector.select();//基于C，可以非阻塞：selector.select(timeout),一秒内没发生请求就返回0
-			// selector.wakeup();//唤醒
+			System.out.println("select client request start..");
+			selector.select();//基于C，可以非阻塞：selector.select(timeout),timeout内没发生请求就返回0
+			System.out.println("select client request wakeUp..");
 			// 获得selector中选中的项的迭代器，选中的项为注册的事件
 			Iterator<?> ite = this.selector.selectedKeys().iterator();
 			while(ite.hasNext()) {
@@ -67,7 +69,7 @@ public class NIOServer {
 	 * @throws IOException 
 	 */
 	public void handler(SelectionKey key) throws IOException {
-		System.out.println("isWritable:"+key.isWritable());//缓冲区是否空闲,一般来说是true
+//		System.out.println("isWritable:"+key.isWritable());//缓冲区是否空闲,一般来说是true
 		// 客户端请求连接事件
 		if(key.isAcceptable()) {
 			handlerAccept(key);
@@ -124,5 +126,28 @@ public class NIOServer {
 		NIOServer server = new NIOServer();
 		server.initServer(8000);
 		server.listen();
+//		server.wakeUpTest(server);
+	}
+	
+	public void wakeUpTest(NIOServer server) {
+		Executors.newCachedThreadPool().execute(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+					server.listen();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		Executors.newCachedThreadPool().execute(new Runnable() {
+			
+			@Override
+			public void run() {
+				server.selector.wakeup();
+			}
+		});
 	}
 }

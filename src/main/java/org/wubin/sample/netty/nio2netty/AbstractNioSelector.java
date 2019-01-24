@@ -69,13 +69,20 @@ public abstract class AbstractNioSelector implements Runnable {
 				wakeUp.set(false);
 				
 				// 服务生，boss，worker
+				System.out.println(Thread.currentThread().getName()+":selector select start");
 				select(selector);
+				System.out.println(Thread.currentThread().getName()+":selector select end");
+				
 				
 				// 取任务并执行
+				System.out.println(Thread.currentThread().getName()+":processTaskQueue start");
 				processTaskQueue();
+				System.out.println(Thread.currentThread().getName()+":processTaskQueue end");
 				
 				// 服务生业务处理，boss：监听端口，worker：微客户端服务
+				System.out.println(Thread.currentThread().getName()+":process start");
 				process(selector);
+				System.out.println(Thread.currentThread().getName()+":process start");
 			}
 		} catch(Exception e1) {
 			//
@@ -91,9 +98,10 @@ public abstract class AbstractNioSelector implements Runnable {
 		Selector selector = this.selector;
 		
 		if(selector != null) {
+			System.out.println(Thread.currentThread().getName()+":selector wakeUp");
 			// 加入客户端后，需要重新激活selector状态
 			if(wakeUp.compareAndSet(false, true)) {
-				selector.wakeup();
+				selector.wakeup();//用于唤醒阻塞在select方法上的线程
 			}
 		} else {
 			taskQueue.remove(task);
@@ -106,9 +114,12 @@ public abstract class AbstractNioSelector implements Runnable {
 	private void processTaskQueue() {
 		for(;;) {
 			final Runnable task = taskQueue.poll();
+			System.out.println(Thread.currentThread().getName()+":get task");
 			if(task == null) {
+				System.out.println(Thread.currentThread().getName()+":no task 500ms continue.");
 				break;
 			}
+			System.out.println(Thread.currentThread().getName()+":get task(boss accpet,worker read) and run, continue.");
 			task.run();
 		}
 	}

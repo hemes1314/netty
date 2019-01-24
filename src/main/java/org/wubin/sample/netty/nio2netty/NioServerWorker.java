@@ -31,6 +31,7 @@ public class NioServerWorker extends AbstractNioSelector implements Worker {
 			return;
 		}
 		
+		System.out.println(Thread.currentThread().getName()+": worker 读取客户端请求并返回消息");
 		for(Iterator<SelectionKey> i = selectedKeys.iterator(); i.hasNext();) {
 			SelectionKey key = i.next();
 			
@@ -72,6 +73,8 @@ public class NioServerWorker extends AbstractNioSelector implements Worker {
 	 */
 	public void registerNewChannelTask(final SocketChannel channel) {
 		final Selector selector = this.selector;
+		
+		System.out.println(Thread.currentThread().getName()+":worker注册read事件任务，等待worker 500ms获取");
 		registerTask(new Runnable() {
 
 			@Override
@@ -89,6 +92,7 @@ public class NioServerWorker extends AbstractNioSelector implements Worker {
 
 	@Override
 	public void select(Selector selector) throws Exception {
-		selector.select(500);//500ms获取一次
+		selector.select(500);//500m唤醒一次
+		System.out.println(Thread.currentThread().getName()+":worker 500ms 看下队列中是否有Read task");
 	}
 }
