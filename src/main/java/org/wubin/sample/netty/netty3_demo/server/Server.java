@@ -12,6 +12,8 @@ import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import org.jboss.netty.handler.codec.string.StringDecoder;
 import org.jboss.netty.handler.codec.string.StringEncoder;
 
+import io.netty.channel.ChannelOption;
+
 public class Server {
 
 	public static void main(String[] args) {
@@ -37,6 +39,11 @@ public class Server {
 				return pipeline;
 			}
 		});
+		
+		// 设置参数，TCP参数，
+		bootstrap.setOption("backlog", 2048);//serverSocketChannel的设置，连接缓冲池的大小
+		bootstrap.setOption("tcpNoDelay", true);// socketChannel的设置，维持连接活跃，清除死链接，长时间没有读写就关闭连接，默认两小时
+		bootstrap.setOption("keepAlive", true);// socketchannel的设置，关闭延迟发送	
 		
 		bootstrap.bind(new InetSocketAddress(10101));
 		System.out.println("start!!!");
