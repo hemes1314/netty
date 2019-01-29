@@ -5,8 +5,7 @@ import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
 /**
  * buff工厂
- * @author -琴兽-
- *
+ * @author wubin
  */
 public class BufferFactory {
 	

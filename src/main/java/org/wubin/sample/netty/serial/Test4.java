@@ -2,6 +2,10 @@ package org.wubin.sample.netty.serial;
 
 import java.util.Arrays;
 
+/**
+ * netty封装自定义序列化
+ * @author wubin
+ */
 public class Test4 {
 
 	public static void main(String[] args) {

@@ -5,6 +5,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * jdk-io序列化
+ * @author wubin
+ */
 public class Test {
 
 	public static void main(String[] args) throws IOException {

@@ -5,6 +5,10 @@ import java.util.Arrays;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
 
+/**
+ * netty序列化
+ * @author wubin
+ */
 public class Test3 {
 
 	public static void main(String[] args) {

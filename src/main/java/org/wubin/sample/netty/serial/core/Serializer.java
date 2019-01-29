@@ -11,8 +11,7 @@ import org.jboss.netty.buffer.ChannelBuffer;
 
 /**
  * 自定义序列化接口
- * @author -琴兽-
- *
+ * @author wubin
  */
 public abstract class Serializer {
 	

@@ -3,6 +3,10 @@ package org.wubin.sample.netty.serial;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+/**
+ * jdk-nio序列化
+ * @author wubin
+ */
 public class Test2 {
 
 	public static void main(String[] args) {
