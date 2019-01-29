@@ -11,6 +11,8 @@ public class Player extends Serializer {
 	
 	private int age;
 	
+	private String name;
+	
 	private List<Integer> skills = new ArrayList<>();
 	
 	private Resource resource = new Resource();
@@ -46,21 +48,31 @@ public class Player extends Serializer {
 	public void setResource(Resource resource) {
 		this.resource = resource;
 	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	@Override
 	protected void read() {
 		this.playerId = readLong();
 		this.age = readInt();
+		this.name = readString();
 		this.skills = readList(Integer.class);
-		this.resource = read(Resource.class);
+//		this.resource = read(Resource.class);
 	}
 	
 	@Override
 	protected void write() {
 		writeLong(playerId);
 		writeInt(age);
+		writeString(name);
 		writeList(skills);
-		writeObject(resource);
+//		writeObject(resource);
 	}
 	
 }

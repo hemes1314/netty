@@ -45,7 +45,7 @@ public class PB2Bytes {
 		PBlayer player = PlayerModule.PBlayer.parseFrom(bs);
 		System.out.println("playerId:"+player.getPlayerId());
 		System.out.println("Age:"+player.getAge());
-		System.out.println("Name"+player.getName());
+		System.out.println("Name:"+player.getName());
 		System.out.println("player:"+(Arrays.toString(player.getSkillsList().toArray())));
 	}
 }
