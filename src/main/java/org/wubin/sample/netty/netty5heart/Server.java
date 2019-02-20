@@ -35,7 +35,7 @@ public class Server {
 
 				@Override
 				protected void initChannel(Channel ch) throws Exception {
-					ch.pipeline().addLast(new IdleStateHandler(5, 5, 10));
+					ch.pipeline().addLast(new IdleStateHandler(5, 5, 10));//读5秒一次心跳，写5秒一次心跳，总空闲等待时间10秒
 					ch.pipeline().addLast(new StringDecoder());
 					ch.pipeline().addLast(new StringEncoder());
 					ch.pipeline().addLast(new HelloHandler());
