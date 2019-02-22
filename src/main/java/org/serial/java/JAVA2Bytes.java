@@ -1,4 +1,4 @@
-package com.java;
+package org.serial.java;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,7 +12,7 @@ public class JAVA2Bytes {
 	private static byte[] toBytes() throws IOException {
 		
 		Player player = new Player(101, 20, "peter");
-		player.getList().add(101);
+		player.getSkills().add(1001);
 		
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
@@ -40,7 +40,7 @@ public class JAVA2Bytes {
 		System.out.println("playerId:"+player.getPlayerId());
 		System.out.println("Age:"+player.getAge());
 		System.out.println("Name"+player.getName());
-		System.out.println("player:"+(Arrays.toString(player.getList().toArray())));
+		System.out.println("player:"+(Arrays.toString(player.getSkills().toArray())));
 	}
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException {

@@ -1,10 +1,10 @@
-package com.proto;
+package org.serial.proto.google;
 
 import java.util.Arrays;
 
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.proto.PlayerModule.PBlayer;
-import com.proto.PlayerModule.PBlayer.Builder;
+import org.serial.proto.google.PlayerModule.PBlayer;
+import org.serial.proto.google.PlayerModule.PBlayer.Builder;
 
 /**
  * protobuf学习

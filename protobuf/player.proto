@@ -1,4 +1,4 @@
-option java_package = "com.proto";
+option java_package = "org.serial.proto.google";
 option java_outer_classname = "PlayerModule";
 
 message PBlayer{

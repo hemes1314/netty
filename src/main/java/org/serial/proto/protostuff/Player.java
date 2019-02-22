@@ -1,31 +1,37 @@
-package com.java;
+package org.serial.proto.protostuff;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.protostuff.Tag;
+
 /**
- *   玩家对象
+ * 玩家对象
  * @author wubin
  */
 public class Player implements Serializable {
 
-	private static final long serialVersionUID = -4395121872627348666L;
+    private static final long serialVersionUID = -3894390290288817846L;
 
-	public Player(long playerId, int age, String name) {
+    public Player(long playerId, int age, String name) {
 		super();
 		this.playerId = playerId;
 		this.age = age;
 		this.name = name;
 	}
 
+	@Tag(1)
 	private long playerId;
 	
+	@Tag(2)
 	private int age;
 	
+	@Tag(3)
 	private String name;
 	
-	private List<Integer> list = new ArrayList<>();
+	@Tag(4)
+	private List<Integer> skills;
 
 	public long getPlayerId() {
 		return playerId;
@@ -51,11 +57,16 @@ public class Player implements Serializable {
 		this.name = name;
 	}
 
-	public List<Integer> getList() {
-		return list;
-	}
+    public List<Integer> getSkills() {
+        return skills;
+    }
 
-	public void setList(List<Integer> list) {
-		this.list = list;
-	}
+    public void setSkills(List<Integer> skills) {
+        this.skills = skills;
+    }
+
+    @Override
+    public String toString() {
+        return "Player [playerId=" + playerId + ", age=" + age + ", name=" + name + ", skills=" + skills + "]";
+    }
 }

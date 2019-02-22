@@ -26,6 +26,19 @@
 	    <artifactId>protobuf-java</artifactId>
 	    <version>2.4.1</version>
 	</dependency>
+	
+	<!-- 基于protobuf-java实现，可将javabean转换为protobuf对象 -->
+	<dependency>
+	    <groupId>io.protostuff</groupId>
+	    <artifactId>protostuff-core</artifactId>
+	    <version>1.6.0</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>io.protostuff</groupId>
+	    <artifactId>protostuff-runtime</artifactId>
+	    <version>1.6.0</version>
+	</dependency>
 
     <dependency>
       <groupId>junit</groupId>
