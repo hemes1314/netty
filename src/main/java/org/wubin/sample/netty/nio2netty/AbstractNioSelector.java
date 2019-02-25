@@ -79,7 +79,7 @@ public abstract class AbstractNioSelector implements Runnable {
 				processTaskQueue();
 				System.out.println(Thread.currentThread().getName()+":processTaskQueue end");
 				
-				// 服务生业务处理，boss：监听端口，worker：微客户端服务
+				// 服务生业务处理，boss：监听端口，worker：为客户端服务
 				System.out.println(Thread.currentThread().getName()+":process start");
 				process(selector);
 				System.out.println(Thread.currentThread().getName()+":process start");
