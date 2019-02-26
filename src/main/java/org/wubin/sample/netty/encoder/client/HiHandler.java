@@ -5,9 +5,7 @@ import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
-import org.wubin.sample.netty.common.constant.StateCode;
 import org.wubin.sample.netty.common.model.Response;
-import org.wubin.sample.netty.encoder.module.fuben.request.FightRequest;
 import org.wubin.sample.netty.encoder.module.fuben.response.FightResponse;
 
 public class HiHandler extends SimpleChannelHandler {

@@ -12,8 +12,6 @@ import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import org.jboss.netty.handler.codec.string.StringDecoder;
 import org.jboss.netty.handler.codec.string.StringEncoder;
 
-import io.netty.channel.ChannelOption;
-
 public class Server {
 
 	public static void main(String[] args) {

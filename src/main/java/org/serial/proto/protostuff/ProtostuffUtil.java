@@ -1,4 +1,4 @@
- package org.serial.proto.protostuff;
+package org.serial.proto.protostuff;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -18,7 +18,7 @@ public class ProtostuffUtil {
 
     private static <T> Schema<T> getSchema(Class<T> clazz) {
         @SuppressWarnings("unchecked")
-        Schema<T> schema = (Schema<T>) cachedSchema.get(clazz);
+        Schema<T> schema = (Schema<T>)cachedSchema.get(clazz);
         if (schema == null) {
             schema = RuntimeSchema.getSchema(clazz);
             if (schema != null) {
@@ -36,7 +36,7 @@ public class ProtostuffUtil {
      */
     public static <T> byte[] serializer(T obj) {
         @SuppressWarnings("unchecked")
-        Class<T> clazz = (Class<T>) obj.getClass();
+        Class<T> clazz = (Class<T>)obj.getClass();
         LinkedBuffer buffer = LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE);
         try {
             Schema<T> schema = getSchema(clazz);
@@ -65,18 +65,18 @@ public class ProtostuffUtil {
             throw new IllegalStateException(e.getMessage(), e);
         }
     }
-    
+
     public static void main(String[] args) {
         Player player = new Player(101, 20, "peter");
         player.getSkills().add(1001);
-        
+
         byte[] bytes = ProtostuffUtil.serializer(player);
         System.out.println(Arrays.toString(bytes));
-        
+
         player = ProtostuffUtil.deserializer(bytes, Player.class);
-        System.out.println("playerId:"+player.getPlayerId());
-        System.out.println("Age:"+player.getAge());
-        System.out.println("Name:"+player.getName());
-        System.out.println("player:"+(Arrays.toString(player.getSkills().toArray())));
+        System.out.println("playerId:" + player.getPlayerId());
+        System.out.println("Age:" + player.getAge());
+        System.out.println("Name:" + player.getName());
+        System.out.println("player:" + (Arrays.toString(player.getSkills().toArray())));
     }
 }

@@ -1,7 +1,6 @@
 package org.serial.proto.protostuff;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.protostuff.Tag;
