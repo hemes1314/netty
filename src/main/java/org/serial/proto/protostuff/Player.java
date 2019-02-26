@@ -1,6 +1,5 @@
 package org.serial.proto.protostuff;
 
-import java.io.Serializable;
 import java.util.List;
 
 import io.protostuff.Tag;
@@ -9,18 +8,19 @@ import io.protostuff.Tag;
  * 玩家对象
  * @author wubin
  */
-public class Player implements Serializable {
+public class Player {
 
-    private static final long serialVersionUID = -3894390290288817846L;
+    public Player() {
+    }
+    
+	public Player(long playerId, int age, String name) {
+        super();
+        this.playerId = playerId;
+        this.age = age;
+        this.name = name;
+    }
 
-    public Player(long playerId, int age, String name) {
-		super();
-		this.playerId = playerId;
-		this.age = age;
-		this.name = name;
-	}
-
-	@Tag(1)
+    @Tag(1)
 	private long playerId;
 	
 	@Tag(2)
@@ -68,4 +68,5 @@ public class Player implements Serializable {
     public String toString() {
         return "Player [playerId=" + playerId + ", age=" + age + ", name=" + name + ", skills=" + skills + "]";
     }
+    
 }
