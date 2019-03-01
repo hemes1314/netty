@@ -18,6 +18,12 @@ public class MyDecoder extends FrameDecoder {
     protected Object decode(ChannelHandlerContext ctx, Channel channel, ChannelBuffer buffer) throws Exception {
         
         if(buffer.readableBytes() > 4) {
+            
+            // 超过2048则清掉,但数据就被截断了,所以添加包头标志，参见RequestDecoder写法
+            if(buffer.readableBytes() > 2048) {
+                buffer.skipBytes(buffer.readableBytes());
+            }
+            
             // 标记
             buffer.markReaderIndex();
             // 长度

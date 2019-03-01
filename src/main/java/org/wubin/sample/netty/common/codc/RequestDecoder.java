@@ -31,14 +31,31 @@ public class RequestDecoder extends FrameDecoder {
         // 可读长度必须大于基本长度
         if(buffer.readableBytes() >= BASE_LENGTH) {
             
+            // 防止socket字节流攻击
+            if(buffer.readableBytes() > 2048) {
+                buffer.skipBytes(buffer.readableBytes());
+            }
+            
             // 记录包头开始的index
             // 读指针（>=0），写指针(>=读指针)
-            int beginReaderIndex = buffer.readerIndex();
+            int beginReaderIndex;
             
             while(true) {
-                // 读取到是包头就玩下走
+                
+                // 记录包头开始的index
+                // 读指针（>=0），写指针(>=读指针)
+                beginReaderIndex = buffer.readerIndex();
+                buffer.markReaderIndex();
+                // 读取到是包头就往下走
                 if(buffer.readInt() == ConstantValue.FLAG) {
                     break;
+                }
+                // 未读到包头，略过一个字节，继续读取是否是包头
+                buffer.resetReaderIndex();
+                buffer.readByte();
+                // 长度又变得不满足
+                if(buffer.readableBytes() < BASE_LENGTH) {
+                    return null;
                 }
             }
             // 模块号
