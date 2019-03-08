@@ -31,7 +31,8 @@ public class RequestDecoder extends FrameDecoder {
         // 可读长度必须大于基本长度
         if(buffer.readableBytes() >= BASE_LENGTH) {
             
-            // 防止socket字节流攻击
+            // 数据会分包截断
+            // 防止socket字节流攻击(数据包长度很大)，大于指定字节则清掉buffer，再过来数据后则需要添加包头标识
             if(buffer.readableBytes() > 2048) {
                 buffer.skipBytes(buffer.readableBytes());
             }
