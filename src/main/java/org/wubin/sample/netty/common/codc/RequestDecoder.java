@@ -22,17 +22,13 @@ public class RequestDecoder extends FrameDecoder {
      */
     public static int BASE_LENGTH = 4 + 2 + 2 + 4;
 
-    /* (non-Javadoc)
-     * @see org.jboss.netty.handler.codec.frame.FrameDecoder#decode(org.jboss.netty.channel.ChannelHandlerContext, org.jboss.netty.channel.Channel, org.jboss.netty.buffer.ChannelBuffer)
-     */
     @Override
     protected Object decode(ChannelHandlerContext ctx, Channel channel, ChannelBuffer buffer) throws Exception {
 
         // 可读长度必须大于基本长度
         if(buffer.readableBytes() >= BASE_LENGTH) {
             
-            // 数据会分包截断
-            // 防止socket字节流攻击(数据包长度很大)，大于指定字节则清掉buffer，再过来数据后则需要添加包头标识
+            // 防止socket字节流攻击(数据包长度很大)，大于指定字节则跳过读取，再过来数据后则需要添加包头标识
             if(buffer.readableBytes() > 2048) {
                 buffer.skipBytes(buffer.readableBytes());
             }
@@ -83,7 +79,7 @@ public class RequestDecoder extends FrameDecoder {
             // 继续往下传递 sendUpStreamEvent
             return request;
         }
-        // 数据包不完整，需要等待后边的包来
+        // 数据包不完整，需要等待后边的包来, 将未读取完的数据缓存在cumulation（ChannelBuffer）中
         return null;
     }
 }
