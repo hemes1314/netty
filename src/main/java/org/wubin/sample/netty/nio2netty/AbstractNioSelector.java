@@ -65,7 +65,7 @@ public abstract class AbstractNioSelector implements Runnable {
 		Thread.currentThread().setName(this.threadName);
 		try {
 			while(true) {
-				// 休眠
+				// 原子标识
 				wakeUp.set(false);
 				
 				// 服务生，boss，worker
